@@ -23,10 +23,10 @@ public class PurchaseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_purchase);
 
         mPriceEditText = (EditText) findViewById(R.id.car_price);
-        mDownPaymentEditText = (EditText) findViewById(R.id.down_Payment);
-        mThreeYearRadioButton = (RadioButton) findViewById()
-        mFourYearRadioButton = (RadioButton) findViewById()
-        mFiveYearRadioButton = (RadioButton) findViewById()
+        mDownPaymentEditText = (EditText) findViewById(R.id.down_payment);
+        mThreeYearRadioButton = (RadioButton) findViewById(R.id.three_yearRadioButton);
+        mFourYearRadioButton = (RadioButton) findViewById(R.id.four_yearRadioButton);
+        mFiveYearRadioButton = (RadioButton) findViewById(R.id.four_yearRadioButton);
     }
 
     private void collectCarLoanData() {
@@ -37,8 +37,7 @@ public class PurchaseActivity extends AppCompatActivity {
             mCarLoan.setTerm(3);
         else if (mFourYearRadioButton.isChecked())
             mCarLoan.setTerm(4);
-        else (mFiveYearRadioButton.isChecked())
-            mCarLoan.setTerm(5);
+        else mCarLoan.setTerm(5);
     }
 
     protected void reportSummary(View v) {
@@ -50,8 +49,6 @@ public class PurchaseActivity extends AppCompatActivity {
         // Put data into the Intent
         launchLoanReport.putExtra("loanReport", report);
 
-        startActivity(Intent intent)
-
-
+        startActivity(launchLoanReport);
     }
 }

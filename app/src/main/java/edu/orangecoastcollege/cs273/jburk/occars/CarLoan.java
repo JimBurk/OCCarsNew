@@ -30,7 +30,9 @@ public class CarLoan {
         return mPrice + taxAmount();
     }
 
-    public double borrowedAmount() {}
+    public double borrowedAmount() {
+        return totalAmount() - mDownPayment;
+    }
 
     public double interestAmount() {
         double interestRate;
@@ -56,7 +58,7 @@ public class CarLoan {
         return borrowedAmount() * interestRate;
     }
 
-    public monthlyPayment() {
+    public double monthlyPayment() {
         return (borrowedAmount() + interestAmount()) / (mTerm * 12);
     }
 
