@@ -18,7 +18,7 @@ public class CarLoan {
         mDownPayment = downPayment;
     }
 
-    public void setTerm(int term) {
+    public void setLoanTerm(int term) {
         mTerm = term;
     }
 
@@ -30,11 +30,11 @@ public class CarLoan {
         return mPrice + taxAmount();
     }
 
-    public double borrowedAmount() {
+    public double calculateBorrowedAmount() {
         return totalAmount() - mDownPayment;
     }
 
-    public double interestAmount() {
+    public double calculateInterestAmount() {
         double interestRate;
         // 3 yr = 4.62
         // 4 yr = 4.19
@@ -55,11 +55,11 @@ public class CarLoan {
                 break;
         }
 
-        return borrowedAmount() * interestRate;
+        return calculateBorrowedAmount() * interestRate;
     }
 
-    public double monthlyPayment() {
-        return (borrowedAmount() + interestAmount()) / (mTerm * 12);
+    public double calculateMonthlyPayment() {
+        return (calculateBorrowedAmount() + calculateInterestAmount()) / (mTerm * 12);
     }
 
 }

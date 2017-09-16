@@ -8,7 +8,7 @@
     tools:context="edu.orangecoastcollege.cs273.jburk.occars.PurchaseActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/oc_cars_logo"
@@ -17,69 +17,85 @@
         android:layout_alignParentStart="true"/>
 
     <TextView
-        android:id="@+id/instruction"
+        android:id="@+id/textview1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/instruction"
-        android:layout_below="@+id/imageView"
-        android:layout_centerHorizontal="true"/>
+        android:layout_below="@+id/imageView1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
 
     <TextView
-        android:id="@+id/label_price"
+        android:id="@+id/textview2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/car_price"
-        android:layout_alignBaseline="@+id/down_payment"
-        android:layout_alignBottom="@+id/down_payment"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
-
-    <EditText
-        android:id="@+id/car_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
-        android:layout_above="@+id/radioGroup"
-        android:layout_toRightOf="@+id/imageView"
-        android:layout_toEndOf="@+id/imageView"
-        android:layout_marginBottom="42dp"/>
+        android:layout_alignBaseline="@+id/car_priceEditText"
+        android:layout_alignBottom="@+id/car_priceEditText"
+        android:layout_alignLeft="@id/textview1"
+        android:layout_alignStart="@+id/textview1"/>
 
     <TextView
-        android:id="@+id/label_down"
+        android:id="@+id/textview3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dollar_sign"
+        android:layout_alignBottom="@+id/textview2"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:id="@+id/car_priceEditText"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:layout_below="@+id/textview1"
+        android:layout_toRightOf="@id/textview3"
+        android:layout_toEndOf="@id/textview3"
+        android:layout_marginTop="32dp"/>
+
+    <TextView
+        android:id="@+id/textview4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/down_payment"
-        android:layout_alignBaseline="@+id/car_price"
-        android:layout_alignBottom="@+id/car_price"
+        android:layout_alignBottom="@+id/down_paymentEditText"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/textview2"
+        android:layout_alignEnd="@+id/textview2"/>
+
+    <TextView
+        android:id="@+id/textview5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dollar_sign"
+        android:layout_alignBottom="@id/down_paymentEditText"
+        android:layout_centerHorizontal="true"/>
 
     <EditText
-        android:id="@+id/down_payment"
-        android:layout_width="wrap_content"
+        android:id="@+id/down_paymentEditText"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="number"
-        android:layout_above="@+id/car_price"
-        android:layout_alignLeft="@+id/car_price"
-        android:layout_alignStart="@+id/car_price"/>
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/car_priceEditText"
+        android:layout_alignStart="@+id/car_priceEditText"/>
 
     <RadioGroup
+        android:id="@+id/loanTermRadioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/radioGroup"
-        android:layout_above="@+id/loan_button"
+        android:layout_below="@+id/textview5"
+        android:layout_marginTop="50dp"
+        android:background="@color/colorPrimaryDark"
         android:layout_centerHorizontal="true">
 
         <RadioButton
             android:id="@+id/three_yearRadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/down_payment"
-            android:layout_alignRight="@+id/down_payment"
-            android:layout_below="@+id/car_price"
             android:layout_weight="1"
             android:checked="true"
             android:text="@string/years3"/>
@@ -88,20 +104,25 @@
             android:id="@+id/four_yearRadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/imageView"
-            android:layout_toRightOf="@+id/radioGroup"
+            android:layout_weight="1"
             android:text="@string/years4"/>
 
         <RadioButton
             android:id="@+id/five_yearRadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/radioGroup"
-            android:layout_centerHorizontal="true"
             android:layout_weight="1"
             android:text="@string/years5"/>
 
     </RadioGroup>
+
+    <TextView
+        android:id="@+id/textview6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/loan_term"
+        android:layout_below="@id/loanTermRadioGroup"
+        android:layout_centerHorizontal="true"/>
 
     <Button
         android:id="@+id/loan_button"

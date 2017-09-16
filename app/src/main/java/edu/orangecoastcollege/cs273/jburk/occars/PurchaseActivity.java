@@ -19,14 +19,15 @@ public class PurchaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_purchase);
 
-        mPriceEditText = (EditText) findViewById(R.id.car_price);
-        mDownPaymentEditText = (EditText) findViewById(R.id.down_payment);
+        mPriceEditText = (EditText) findViewById(R.id.car_priceEditText);
+        mDownPaymentEditText = (EditText) findViewById(R.id.down_paymentEditText);
         mThreeYearRadioButton = (RadioButton) findViewById(R.id.three_yearRadioButton);
         mFourYearRadioButton = (RadioButton) findViewById(R.id.four_yearRadioButton);
-        mFiveYearRadioButton = (RadioButton) findViewById(R.id.four_yearRadioButton);
+        mFiveYearRadioButton = (RadioButton) findViewById(R.id.five_yearRadioButton);
     }
 
     private void collectCarLoanData() {
@@ -34,13 +35,13 @@ public class PurchaseActivity extends AppCompatActivity {
         mCarLoan.setDownPayment(Double.parseDouble(mDownPaymentEditText.getText().toString()));
 
         if (mThreeYearRadioButton.isChecked())
-            mCarLoan.setTerm(3);
+            mCarLoan.setLoanTerm(3);
         else if (mFourYearRadioButton.isChecked())
-            mCarLoan.setTerm(4);
-        else mCarLoan.setTerm(5);
+            mCarLoan.setLoanTerm(4);
+        else mCarLoan.setLoanTerm(5);
     }
 
-    protected void reportSummary(View v) {
+    public void reportSummary(View v) {
         collectCarLoanData();
         String report ="Monthly Payment: $";
 
