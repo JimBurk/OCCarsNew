@@ -10,6 +10,10 @@ public class CarLoan {
     private double mDownPayment;
     private int mTerm;
 
+    private static double APR_3_YEARS = 0.0462;
+    private static double APR_4_YEARS = 0.0419;
+    private static double APR_5_YEARS = 0.0416;
+
     public void setPrice(double price) {
         mPrice = price;
     }
@@ -20,6 +24,10 @@ public class CarLoan {
 
     public void setLoanTerm(int term) {
         mTerm = term;
+    }
+
+    public int getLoanTerm() {
+        return mTerm;
     }
 
     public double taxAmount() {
@@ -42,13 +50,13 @@ public class CarLoan {
 
         switch (mTerm) {
             case 3:
-                interestRate = 0.0462;
+                interestRate = APR_3_YEARS;
                 break;
             case 4:
-                interestRate = 0.0419;
+                interestRate = APR_4_YEARS;
                 break;
             case 5:
-                interestRate = 0.0416;
+                interestRate = APR_5_YEARS;
                 break;
             default:
                 interestRate = 0.10;
@@ -59,7 +67,7 @@ public class CarLoan {
     }
 
     public double calculateMonthlyPayment() {
-        return (calculateBorrowedAmount() + calculateInterestAmount()) / (mTerm * 12);
+        return (calculateBorrowedAmount() + calculateInterestAmount()) / (mTerm * 12.0);
     }
 
 }

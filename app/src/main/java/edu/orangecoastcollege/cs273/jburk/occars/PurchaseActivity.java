@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.SeekBar;
+
+import java.text.DecimalFormat;
 
 public class PurchaseActivity extends AppCompatActivity {
     private EditText mPriceEditText;
@@ -29,24 +32,49 @@ public class PurchaseActivity extends AppCompatActivity {
     }
 
     private void collectCarLoanData() {
-        mCarLoan.setPrice(Double.parseDouble(mPriceEditText.getText().toString()));
-        mCarLoan.setDownPayment(Double.parseDouble(mDownPaymentEditText.getText().toString()));
+        double price = Double.parseDouble(mPriceEditText.getText().toString());
+        mCarLoan.setPrice(price);
+        double down = Double.parseDouble(mDownPaymentEditText.getText().toString());
+        mCarLoan.setDownPayment(down);
 
+        int term = 5;
         if (mThreeYearRadioButton.isChecked())
-            mCarLoan.setLoanTerm(3);
+            term = 3;
         else if (mFourYearRadioButton.isChecked())
-            mCarLoan.setLoanTerm(4);
-        else mCarLoan.setLoanTerm(5);
+            term = 4;
+
+        mCarLoan.setLoanTerm(term);
     }
 
     public void reportSummary(View v) {
         collectCarLoanData();
-        String report ="Monthly Payment: $";
+
+        double payment = mCarLoan.calculateMonthlyPayment();
+        double taxes = mCarLoan.taxAmount();
+        double cost = mCarLoan.totalAmount();
+        double borrow = mCarLoan.calculateBorrowedAmount();
+        double interest = mCarLoan.calculateInterestAmount();
+
+        String paymentString = " Monthly Payment:\t\t$" + payment;
+
+        String priceString = "Car Sales Price:\t\t\t\t$ " + Double.parseDouble(mPriceEditText.getText().toString());
+        String downString = "\nDown Payment:\t\t\t\t$ " + Double.parseDouble(mDownPaymentEditText.getText().toString());
+        String taxString = "\nSalesTax Amount:\t\t$   " + taxes;
+        String costString = "\nYour Total Cost:\t\t\t\t$ " + cost;
+        String borrowedString = "\nBorrowed Amount:\t\t$ " + borrow;
+        String interestString = "\nInterest Amount:\t\t\t$   " + interest;
+        String termString = "\n\nLoan Term is " + mCarLoan.getLoanTerm() + " years.";
+        String noteString = "\n\nNOTE:\n\n1. Loan information is made available by OC Cars.\n\n2. A sales tax rate of 8% is required in Costa Mesa.";
+
+        String reportString =  priceString + downString + taxString + costString + borrowedString + interestString + termString + noteString;
 
         // Intent starts a new activity and can share data with them
         Intent launchLoanReport = new Intent(this, LoanSummaryActivity.class);
         // Put data into the Intent
-        launchLoanReport.putExtra("loanReport", report);
+
+        launchLoanReport.putExtra("payment", paymentString);
+
+        launchLoanReport.putExtra("report", reportString);
 
         startActivity(launchLoanReport);
     }
