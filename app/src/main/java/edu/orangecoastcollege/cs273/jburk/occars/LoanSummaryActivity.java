@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 /**
- * Created by jamesburk on 9/15/17.
+ * The Loan Summary Activity displays the loan information.
  */
 
 public class LoanSummaryActivity extends AppCompatActivity {

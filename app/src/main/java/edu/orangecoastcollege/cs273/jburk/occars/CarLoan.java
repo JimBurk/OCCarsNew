@@ -1,7 +1,7 @@
 package edu.orangecoastcollege.cs273.jburk.occars;
 
 /**
- * Created by jimburk on 9/14/17.
+ * The Car Loan class is the model in the MVC method. It provides the logic for the application.
  */
 
 public class CarLoan {
@@ -13,6 +13,11 @@ public class CarLoan {
     private static double APR_3_YEARS = 0.0462;
     private static double APR_4_YEARS = 0.0419;
     private static double APR_5_YEARS = 0.0416;
+
+    /***
+     * The three values requird from the user are the price, the down payment and
+     * the loan term. These three "setters" enter the data into the class variables.
+     */
 
     public void setPrice(double price) {
         mPrice = price;
@@ -26,9 +31,20 @@ public class CarLoan {
         mTerm = term;
     }
 
+    /***
+     *The values of the loan term can be obtained from the class. This avoids checking
+     * the radio buttons twice.
+     */
+
     public int getLoanTerm() {
         return mTerm;
     }
+
+    /***
+     *The tax amoungt, total amount of the sale, the borrowed amount, the interest amount and
+     * the payment are made available to the controller with these "getters" and the calculate
+     * Monthly Payment method.
+     */
 
     public double taxAmount() {
         return mPrice * STATE_TAX;
@@ -44,9 +60,6 @@ public class CarLoan {
 
     public double calculateInterestAmount() {
         double interestRate;
-        // 3 yr = 4.62
-        // 4 yr = 4.19
-        // 5 yr = 4.16
 
         switch (mTerm) {
             case 3:

@@ -15,7 +15,7 @@
     <string name="loan_report_button_text">Loan Report</string>
     <string name="go_data_entry">Return to Data Entry</string>
 
-    <!-- REPORT STRINGS -->
+    <!-- REPORT STRINGS  (Actually not used) -->
     <string name="report_header">Your Loan Summary</string>
     <string name="report_line1"><b>Monthly Payment:\t$</b></string>
     <string name="report_line2">Car Sales Price:\t\t\t\t\t\t\t\t$</string>

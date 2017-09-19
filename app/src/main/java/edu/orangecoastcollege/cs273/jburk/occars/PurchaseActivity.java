@@ -10,6 +10,16 @@ import android.widget.SeekBar;
 
 import java.text.DecimalFormat;
 
+/***
+ * Main Activity for the OC Cars application. The user enters a selling price, the down payment,
+ * and the loan term. The application then derives the interest, payment and several values, and
+ * presents it to the user.
+ *
+ * Authored by Jim Burk
+ *
+ * September 19, 2017
+ */
+
 public class PurchaseActivity extends AppCompatActivity {
     private EditText mPriceEditText;
     private EditText mDownPaymentEditText;
@@ -18,6 +28,8 @@ public class PurchaseActivity extends AppCompatActivity {
     private RadioButton mFiveYearRadioButton;
 
     private CarLoan mCarLoan = new CarLoan();
+
+    public final DecimalFormat df = new DecimalFormat("$##,##0.00");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +58,12 @@ public class PurchaseActivity extends AppCompatActivity {
         mCarLoan.setLoanTerm(term);
     }
 
+    /***
+     * The reportSummary method collects the car loan data from the Purchase Activity view,
+     * derives the loan information, and passes it to the loan summary view.
+     *
+     */
+
     public void reportSummary(View v) {
         collectCarLoanData();
 
@@ -55,25 +73,24 @@ public class PurchaseActivity extends AppCompatActivity {
         double borrow = mCarLoan.calculateBorrowedAmount();
         double interest = mCarLoan.calculateInterestAmount();
 
-        String paymentString = " Monthly Payment:\t\t$" + payment;
+        String paymentString = " Monthly Payment:\t\t" + df.format(payment);
 
-        String priceString = "Car Sales Price:\t\t\t\t$ " + Double.parseDouble(mPriceEditText.getText().toString());
-        String downString = "\nDown Payment:\t\t\t\t$ " + Double.parseDouble(mDownPaymentEditText.getText().toString());
-        String taxString = "\nSalesTax Amount:\t\t$   " + taxes;
-        String costString = "\nYour Total Cost:\t\t\t\t$ " + cost;
-        String borrowedString = "\nBorrowed Amount:\t\t$ " + borrow;
-        String interestString = "\nInterest Amount:\t\t\t$   " + interest;
+        String priceString = "Car Sales Price:\t\t\t\t" + df.format(Double.parseDouble(mPriceEditText.getText().toString()));
+        String downString = "\nDown Payment:\t\t\t\t" + df.format(Double.parseDouble(mDownPaymentEditText.getText().toString()));
+        String taxString = "\nSalesTax Amount:\t\t  " + df.format(taxes);
+        String costString = "\nYour Total Cost:\t\t\t\t" + df.format(cost);
+        String borrowedString = "\nBorrowed Amount:\t\t" + df.format(borrow);
+        String interestString = "\nInterest Amount:\t\t\t  " + df.format(interest);
         String termString = "\n\nLoan Term is " + mCarLoan.getLoanTerm() + " years.";
         String noteString = "\n\nNOTE:\n\n1. Loan information is made available by OC Cars.\n\n2. A sales tax rate of 8% is required in Costa Mesa.";
 
         String reportString =  priceString + downString + taxString + costString + borrowedString + interestString + termString + noteString;
 
-        // Intent starts a new activity and can share data with them
+        // Intent starts a new activity and can share data with it
         Intent launchLoanReport = new Intent(this, LoanSummaryActivity.class);
+
         // Put data into the Intent
-
         launchLoanReport.putExtra("payment", paymentString);
-
         launchLoanReport.putExtra("report", reportString);
 
         startActivity(launchLoanReport);
